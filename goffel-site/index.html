@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goffel | Scandinavian bicycles for everyday movement</title>
+    <meta
+      name="description"
+      content="goffel is a Scandinavian bicycle shop with premium men's, women's, children's and electric bikes."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="brand-row">
+          <a class="wordmark" href="index.html" aria-label="goffel home">goffel</a>
+          <nav class="primary-nav" aria-label="Primary">
+            <a href="mens.html">Mens Bikes</a>
+            <a href="womens.html">Womens Bikes</a>
+            <a href="childrens.html">Childrens Bikes</a>
+            <a href="electric.html">Electric Bikes</a>
+          </nav>
+          <a class="nav-cta" href="#categories">Browse bikes</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-band reveal">
+          <div class="hero-copy">
+            <p class="eyebrow">Scandinavian bicycles</p>
+            <h1>Find your perfect ride.</h1>
+            <p class="intro">
+              Calm, capable bikes for city mornings, family weekends and longer electric miles.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-dark" href="#categories">Shop categories</a>
+              <a class="button button-ghost" href="#featured-bike">Featured model</a>
+            </div>
+          </div>
+          <div class="hero-note">
+            <p>Built for everyday use with a quiet premium feel and practical details that last.</p>
+          </div>
+        </section>
+
+        <section class="category-showcase reveal" id="categories" aria-labelledby="category-heading">
+          <div class="section-heading">
+            <p class="eyebrow">Browse by category</p>
+            <h2 id="category-heading">Four ways into the collection.</h2>
+          </div>
+          <div class="category-grid" id="category-grid"></div>
+        </section>
+
+        <section class="feature-band reveal" id="featured-bike" aria-labelledby="featured-heading">
+          <div class="feature-copy">
+            <p class="eyebrow">Featured bike</p>
+            <h2 id="featured-heading">A composed daily rider, ready for longer routes.</h2>
+            <p id="featured-description"></p>
+            <div class="feature-meta" id="featured-meta"></div>
+            <div class="hero-actions">
+              <a class="button button-dark" id="featured-link" href="mens.html">View featured bike</a>
+            </div>
+          </div>
+          <a class="feature-visual" id="featured-visual" href="mens.html" aria-label="View featured bike">
+            <img id="featured-image" src="" alt="" />
+          </a>
+        </section>
+
+        <section class="service-band reveal" aria-label="Service highlights">
+          <article>
+            <h3>Quietly premium</h3>
+            <p>Restrained materials, honest geometry and practical features you actually use.</p>
+          </article>
+          <article>
+            <h3>Fast local pickup</h3>
+            <p>Reserve online, then collect from the shop after a final setup and fit check.</p>
+          </article>
+          <article>
+            <h3>Thirty day returns</h3>
+            <p>Take it home, ride it properly, and bring it back if the fit is not right.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>goffel</p>
+        <p>Designed for everyday movement.</p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
