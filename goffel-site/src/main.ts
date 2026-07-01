@@ -1,4 +1,21 @@
-const catalog = [
+interface Bike {
+  slug: string;
+  page: string;
+  title: string;
+  heroLabel: string;
+  productName: string;
+  price: string;
+  cardPrice: string;
+  shortDescription: string;
+  description: string;
+  specs: [string, string][];
+  image: string;
+  alt: string;
+  accentClass: string;
+  buyMessage: string;
+}
+
+const catalog: Bike[] = [
   {
     slug: "mens",
     page: "mens.html",
@@ -95,17 +112,17 @@ const catalog = [
 
 const page = document.body.dataset.page;
 
-function currencySummary() {
+function currencySummary(): string[] {
   return ["Pickup ready in 48 hours", "30 day returns", "Free service check in 90 days"];
 }
 
-function renderHome() {
-  const grid = document.getElementById("category-grid");
-  const featuredImage = document.getElementById("featured-image");
-  const featuredDescription = document.getElementById("featured-description");
-  const featuredMeta = document.getElementById("featured-meta");
-  const featuredLink = document.getElementById("featured-link");
-  const featuredVisual = document.getElementById("featured-visual");
+function renderHome(): void {
+  const grid = document.getElementById("category-grid") as HTMLElement;
+  const featuredImage = document.getElementById("featured-image") as HTMLImageElement;
+  const featuredDescription = document.getElementById("featured-description") as HTMLElement;
+  const featuredMeta = document.getElementById("featured-meta") as HTMLElement;
+  const featuredLink = document.getElementById("featured-link") as HTMLAnchorElement;
+  const featuredVisual = document.getElementById("featured-visual") as HTMLAnchorElement;
   const featured = catalog[0];
 
   grid.innerHTML = catalog
@@ -136,11 +153,11 @@ function renderHome() {
   featuredVisual.href = featured.page;
 }
 
-function renderCategoryPage() {
-  const slug = document.body.dataset.category;
-  const bike = catalog.find((item) => item.slug === slug);
+function renderCategoryPage(): void {
+  const slug = document.body.dataset.category as string;
+  const bike = catalog.find((item) => item.slug === slug) as Bike;
   const others = catalog.filter((item) => item.slug !== slug);
-  const root = document.getElementById("category-page-root");
+  const root = document.getElementById("category-page-root") as HTMLElement;
 
   root.innerHTML = `
     <div class="category-page">
@@ -258,28 +275,30 @@ function renderCategoryPage() {
   wireDialogs();
 }
 
-function wireDialogs() {
-  const buyDialog = document.getElementById("buy-dialog");
-  const lightboxDialog = document.getElementById("lightbox-dialog");
-  const buyTrigger = document.getElementById("buy-trigger");
-  const imageTrigger = document.getElementById("detail-image-trigger");
+function wireDialogs(): void {
+  const buyDialog = document.getElementById("buy-dialog") as HTMLElement;
+  const lightboxDialog = document.getElementById("lightbox-dialog") as HTMLElement;
+  const buyTrigger = document.getElementById("buy-trigger") as HTMLButtonElement;
+  const imageTrigger = document.getElementById("detail-image-trigger") as HTMLButtonElement;
 
   buyTrigger?.addEventListener("click", () => openDialog(buyDialog));
   imageTrigger?.addEventListener("click", () => openDialog(lightboxDialog));
 
-  buyDialog?.addEventListener("click", (event) => {
-    if (event.target === buyDialog || event.target.hasAttribute("data-close-dialog")) {
+  buyDialog?.addEventListener("click", (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (target === buyDialog || target.hasAttribute("data-close-dialog")) {
       closeDialog(buyDialog);
     }
   });
 
-  lightboxDialog?.addEventListener("click", (event) => {
-    if (event.target === lightboxDialog || event.target.hasAttribute("data-close-lightbox")) {
+  lightboxDialog?.addEventListener("click", (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (target === lightboxDialog || target.hasAttribute("data-close-lightbox")) {
       closeDialog(lightboxDialog);
     }
   });
 
-  document.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       closeDialog(buyDialog);
       closeDialog(lightboxDialog);
@@ -287,19 +306,19 @@ function wireDialogs() {
   });
 }
 
-function openDialog(dialog) {
+function openDialog(dialog: HTMLElement): void {
   if (!dialog) return;
   dialog.hidden = false;
-  const interactive = dialog.querySelector("button, a");
+  const interactive = dialog.querySelector("button, a") as HTMLElement;
   interactive?.focus();
 }
 
-function closeDialog(dialog) {
+function closeDialog(dialog: HTMLElement): void {
   if (!dialog) return;
   dialog.hidden = true;
 }
 
-function initReveal() {
+function initReveal(): void {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -315,8 +334,8 @@ function initReveal() {
   document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 }
 
-function primeFooterMeta() {
-  const footer = document.querySelector(".site-footer");
+function primeFooterMeta(): void {
+  const footer = document.querySelector(".site-footer") as HTMLElement;
   if (!footer) return;
   footer.dataset.meta = currencySummary().join(" | ");
 }
